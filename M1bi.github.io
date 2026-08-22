@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matter 1B</title>
+    <!-- Tailwind CSS CDN for rapid styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- PWA Web App Manifest & Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 320'%3E%3Ccircle cx='160' cy='160' r='150' fill='%231e3a8a' stroke='%23ffffff' stroke-width='12'/%3E%3Cg transform='translate(60, 52) scale(8.5)'%3E%3Cpath d='M12 2v20m-4-15h8M7 16l-2-2m14 2l2-2M12 20l-5-5m5 5l5-5M5 12h2a5 5 0 0010 0h2' stroke='%23ffffff' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/g%3E%3Ctext x='160' y='270' fill='%2393c5fd' font-size='22' font-weight='bold' text-anchor='middle' font-family='sans-serif' letter-spacing='3'%3EMMXXVI%3C/text%3E%3C/svg%3E">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 320'%3E%3Ccircle cx='160' cy='160' r='150' fill='%231e3a8a' stroke='%23ffffff' stroke-width='12'/%3E%3Cg transform='translate(60, 52) scale(8.5)'%3E%3Cpath d='M12 2v20m-4-15h8M7 16l-2-2m14 2l2-2M12 20l-5-5m5 5l5-5M5 12h2a5 5 0 0010 0h2' stroke='%23ffffff' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/g%3E%3Ctext x='160' y='270' fill='%2393c5fd' font-size='22' font-weight='bold' text-anchor='middle' font-family='sans-serif' letter-spacing='3'%3EMMXXVI%3C/text%3E%3C/svg%3E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Matter 1B">
+
+    <style>
+        body { background-color: #ffffff; color: #111827; font-family: system-ui, -apple-system, sans-serif; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        @keyframes glisten {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .glisten-effect {
+            background: linear-gradient(90deg, rgba(30,58,138,0.05) 0%, rgba(147,197,253,0.4) 50%, rgba(30,58,138,0.05) 100%);
+            background-size: 200% 100%;
+            animation: glisten 1.5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- TOP HEADER -->
+    <header class="bg-white border-b border-gray-200 p-4 flex justify-between items-center sticky top-0 z-50">
+        <div class="w-8"></div>
+        <div class="flex items-center space-x-2.5">
+            <svg class="w-8 h-8 rounded-full shadow-sm" viewBox="0 0 320 320">
+                <circle cx='160' cy='160' r='150' fill='#1e3a8a' stroke='#ffffff' stroke-width='12'/>
+                <g transform="translate(60, 52) scale(8.5)">
+                    <path d="M12 2v20m-4-15h8M7 16l-2-2m14 2l2-2M12 20l-5-5m5 5l5-5M5 12h2a5 5 0 0010 0h2" stroke="#ffffff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+                <text x='160' y='270' fill='#93c5fd' font-size='22' font-weight='bold' text-anchor='middle' font-family='sans-serif' letter-spacing='3'>MMXXVI</text>
+            </svg>
+            <span class="font-extrabold tracking-widest text-2xl text-gray-900">MATTER <span class="text-[#1e3a8a]">1B</span></span>
+        </div>
+        <div class="flex items-center space-x-3">
+            <button onclick="openModal('alertsModal')" class="relative p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition">
+                <span class="absolute top-1 right-1 w-2 h-2 bg-[#1e3a8a] rounded-full animate-pulse"></span>
+                <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+            </button>
+            <div id="userBadgeHeader" class="text-xs px-2.5 py-1 bg-blue-50 border border-blue-200 text-[#1e3a8a] rounded-full font-medium">Anchor</div>
+        </div>
+    </header>
+
+    <!-- MAIN APP CONTENT CONTAINER -->
+    <main class="flex-grow pb-24 max-w-7xl mx-auto w-full p-4 space-y-6">
+
+        <!-- VIEW 1: DASHBOARD -->
+        <section id="view-dashboard" class="space-y-6">
+            
+            <!-- DESKTOP QUARTERS / MOBILE STACK GRID -->
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
+
+                <!-- COLUMN 1: ANCHOR -->
+                <div class="space-y-6 flex flex-col">
+                    <div id="founderBadgeCard" class="bg-white p-6 rounded-2xl text-center relative overflow-hidden transition-all duration-500 flex flex-col items-center">
+                        <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-blue-200/20 rounded-full blur-xl pointer-events-none"></div>
+                        <div class="w-40 h-40 rounded-full flex items-center justify-center mb-3 shadow-lg border-2 border-blue-300 overflow-hidden bg-[#1e3a8a]">
+                            <svg class="w-full h-full" viewBox="0 0 320 320">
+                                <circle cx='160' cy='160' r='150' fill='#1e3a8a' stroke='#ffffff' stroke-width='12'/>
+                                <g transform="translate(60, 52) scale(8.5)">
+                                    <path d="M12 2v20m-4-15h8M7 16l-2-2m14 2l2-2M12 20l-5-5m5 5l5-5M5 12h2a5 5 0 0010 0h2" stroke="#ffffff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                                </g>
+                                <text x='160' y='270' fill='#93c5fd' font-size='22' font-weight='bold' text-anchor='middle' font-family='sans-serif' letter-spacing='3'>MMXXVI</text>
+                            </svg>
+                        </div>
+                        <div class="min-h-[3rem] flex flex-col justify-center items-center">
+                            <h1 id="badgeTitle" class="text-2xl font-black text-gray-900 tracking-tight leading-none">ANCHOR</h1>
+                            <p id="badgeSubtitle" class="text-xs text-gray-600 font-medium mt-1"></p>
+                        </div>
+                    </div>
+
+                    <!-- Registration Container -->
+                    <div id="intakeContainer" class="bg-gray-50 border border-gray-200 p-5 rounded-2xl shadow-sm space-y-4">
+                        <div>
+                            <p class="text-xs text-gray-700 mb-3">Register to secure your badge</p>
+                        </div>
+                        
+                        <form id="marketingForm" onsubmit="handleRegistration(event)" class="space-y-3">
+                            <input type="hidden" name="REF #" id="regRefCode">
+
+                            <div style="display:none; visibility:hidden;" aria-hidden="true">
+                                <input type="text" name="hp_field" id="hp_field" tabindex="-1" autocomplete="off" value="">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1">Name</label>
+                                <input type="text" name="Name" id="regName" required placeholder="Matt Anchor" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#1e3a8a]">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1">Email</label>
+                                <input type="email" name="Email" id="regEmail" required placeholder="name@domain.com" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#1e3a8a]">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1">Phone Number</label>
+                                <input type="tel" name="Phone Number" id="regPhone" required placeholder="(555) 000-0000" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#1e3a8a]">
+                            </div>
+
+                            <div class="p-3 bg-white border border-gray-200 rounded-xl flex items-center justify-between">
+                                <div class="flex items-center space-x-2">
+                                    <input type="checkbox" id="botCheck" required class="w-4 h-4 text-[#1e3a8a] border-gray-300 rounded focus:ring-blue-600">
+                                    <label for="botCheck" class="text-xs text-gray-700 font-medium select-none">I am not a robot</label>
+                                </div>
+                                <span class="text-[10px] bg-gray-100 text-gray-500 px-2 py-0.5 rounded border border-gray-200">Security Check</span>
+                            </div>
+
+                            <button type="submit" id="submitBtn" class="w-full py-3 bg-gray-900 hover:bg-black font-semibold rounded-xl text-sm text-white transition shadow-md">
+                                Register & Secure Anchor Badge
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- COLUMN 2: BUILD -->
+                <div class="space-y-6 flex flex-col">
+                    <div class="bg-white p-6 rounded-2xl text-center relative overflow-hidden flex flex-col items-center">
+                        <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-blue-200/20 rounded-full blur-xl pointer-events-none"></div>
+                        <div class="w-40 h-40 rounded-full flex items-center justify-center mb-3 shadow-lg border-2 border-blue-300 overflow-hidden bg-[#1e3a8a]">
+                            <svg class="w-full h-full" viewBox="0 0 320 320">
+                                <circle cx='160' cy='160' r='150' fill='#1e3a8a' stroke='#ffffff' stroke-width='12'/>
+                                <path d='M110 200l50-50 40 30 60-70' fill='none' stroke='#ffffff' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'/>
+                                <path d='M220 110h40v40' fill='none' stroke='#ffffff' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'/>
+                                <text x='160' y='270' fill='#93c5fd' font-size='22' font-weight='bold' text-anchor='middle' font-family='sans-serif' letter-spacing='3'>MMXXVI</text>
+                            </svg>
+                        </div>
+                        <div class="min-h-[3rem] flex flex-col justify-center items-center">
+                            <h2 class="text-2xl font-black text-gray-900 tracking-tight leading-none">BUILD</h2>
+                        </div>
+                    </div>
+
+                    <!-- BUILD SECTION FORM -->
+                    <div id="recruitmentContainer" class="bg-gray-50 border border-gray-200 p-5 rounded-2xl shadow-sm space-y-4">
+                        <div>
+                            <p class="text-xs text-gray-700 mb-3">Please submit clearly trustworthy-looking links to resume, proposal, LinkedIn, similar proof, etc. to Build</p>
+                        </div>
+
+                        <form id="matterRecruitmentForm" onsubmit="handleRecruitmentSubmission(event)" class="space-y-3">
+                            <div style="display:none; visibility:hidden;" aria-hidden="true">
+                                <input type="text" name="hp_field_recruit" id="hp_field_recruit" tabindex="-1" autocomplete="off" value="">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1">Name</label>
+                                <input type="text" name="Name" id="recName" required placeholder="Matt Anchor" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#1e3a8a]">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1">Email</label>
+                                <input type="email" name="Email" id="recEmail" required placeholder="name@domain.com" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#1e3a8a]">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1">Phone</label>
+                                <input type="tel" name="Phone" id="recPhone" required placeholder="(555) 000-0000" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#1e3a8a]">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1">Links</label>
+                                <input type="url" name="Links" id="recLinks" required placeholder="https://github.com/username/project or portfolio link" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#1e3a8a]">
+                            </div>
+
+                            <div class="p-3 bg-white border border-gray-200 rounded-xl flex items-center justify-between">
+                                <div class="flex items-center space-x-2">
+                                    <input type="checkbox" id="botCheckRecruit" required class="w-4 h-4 text-[#1e3a8a] border-gray-300 rounded focus:ring-blue-600">
+                                    <label for="botCheckRecruit" class="text-xs text-gray-700 font-medium select-none">I am not a robot</label>
+                                </div>
+                                <span class="text-[10px] bg-gray-100 text-gray-500 px-2 py-0.5 rounded border border-gray-200">Security Check</span>
+                            </div>
+
+                            <button type="submit" id="recSubmitBtn" class="w-full py-3 bg-gray-900 hover:bg-black font-semibold rounded-xl text-sm text-white transition shadow-md">
+                                Submit Application
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- COLUMN 3: FUND -->
+                <div class="space-y-6 flex flex-col">
+                    <div class="bg-white p-6 rounded-2xl text-center relative overflow-hidden flex flex-col items-center">
+                        <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-blue-200/20 rounded-full blur-xl pointer-events-none"></div>
+                        <div class="w-40 h-40 rounded-full flex items-center justify-center mb-3 shadow-lg border-2 border-blue-300 overflow-hidden bg-[#1e3a8a]">
+                            <svg class="w-full h-full" viewBox="0 0 320 320">
+                                <circle cx='160' cy='160' r='150' fill='#1e3a8a' stroke='#ffffff' stroke-width='12'/>
+                                <path d='M160 110v100M110 160h100' fill='none' stroke='#ffffff' stroke-width='16' stroke-linecap='round'/>
+                                <text x='160' y='270' fill='#93c5fd' font-size='22' font-weight='bold' text-anchor='middle' font-family='sans-serif' letter-spacing='3'>MMXXVI</text>
+                            </svg>
+                        </div>
+                        <div class="min-h-[3rem] flex flex-col justify-center items-center">
+                            <h2 class="text-2xl font-black text-gray-900 tracking-tight leading-none">FUND</h2>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 border border-gray-200 p-5 rounded-2xl shadow-sm space-y-4">
+                        <div>
+                            <p class="text-xs text-gray-700 mb-3">Support the protocol setup & growth</p>
+                        </div>
+                        <div class="flex flex-col items-center justify-center w-full">
+                            <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+                            <stripe-buy-button
+                                buy-button-id="buy_btn_1U71K4RLF6aU7W8ixgNVkCzk"
+                                publishable-key="pk_live_51TFyyHRLF6aU7W8iz9eG4Yl8u4vjuC20al7OhuIgSOqw0Nul4YRXhDSY4H6UdOgzSxWl9yiNuhrNqsaZA79IaESN0065t8yDZ6">
+                            </stripe-buy-button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COLUMN 4: SHARE -->
+                <div class="space-y-6 flex flex-col">
+                    <div class="bg-white p-6 rounded-2xl text-center relative overflow-hidden flex flex-col items-center">
+                        <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-blue-200/20 rounded-full blur-xl pointer-events-none"></div>
+                        <div class="w-40 h-40 rounded-full flex items-center justify-center mb-3 shadow-lg border-2 border-blue-300 overflow-hidden bg-[#1e3a8a]">
+                            <svg class="w-full h-full" viewBox="0 0 320 320">
+                                <circle cx='160' cy='160' r='150' fill='#1e3a8a' stroke='#ffffff' stroke-width='12'/>
+                                <circle cx='120' cy='160' r='16' fill='none' stroke='#ffffff' stroke-width='8'/>
+                                <circle cx='200' cy='115' r='16' fill='none' stroke='#ffffff' stroke-width='8'/>
+                                <circle cx='200' cy='205' r='16' fill='none' stroke='#ffffff' stroke-width='8'/>
+                                <path d='M135 150l50-28M135 170l50 28' fill='none' stroke='#ffffff' stroke-width='8' stroke-linecap='round'/>
+                                <text x='160' y='270' fill='#93c5fd' font-size='22' font-weight='bold' text-anchor='middle' font-family='sans-serif' letter-spacing='3'>MMXXVI</text>
+                            </svg>
+                        </div>
+                        <div class="min-h-[3rem] flex flex-col justify-center items-center">
+                            <h2 class="text-2xl font-black text-gray-900 tracking-tight leading-none">SHARE</h2>
+                        </div>
+                    </div>
+                    
+                    <!-- Share Options Panel -->
+                    <div class="bg-gray-50 border border-gray-200 p-5 rounded-2xl shadow-sm space-y-2">
+                        <div>
+                            <p class="text-xs text-gray-700 mb-3">Distribute the network globally</p>
+                        </div>
+                        <div class="w-full space-y-2">
+                            <button onclick="triggerNativeShare()" class="w-full py-2.5 bg-gray-900 hover:bg-black font-semibold rounded-xl text-xs text-white transition shadow-sm flex items-center justify-center space-x-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+                                <span>Share via Device Apps</span>
+                            </button>
+
+                            <div class="grid grid-cols-2 gap-2">
+                                <a id="shareGithub" href="https://github.com" target="_blank" class="py-2 bg-white hover:bg-gray-100 border border-gray-200 text-gray-800 rounded-xl text-[11px] font-medium transition flex items-center justify-center">
+                                    GitHub
+                                </a>
+                                <a id="shareDiscord" href="https://discord.com" target="_blank" class="py-2 bg-white hover:bg-gray-100 border border-gray-200 text-gray-800 rounded-xl text-[11px] font-medium transition flex items-center justify-center">
+                                    Discord
+                                </a>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-2">
+                                <a id="shareTwitter" href="#" target="_blank" class="py-2 bg-white hover:bg-gray-100 border border-gray-200 text-gray-800 rounded-xl text-[11px] font-medium transition flex items-center justify-center">
+                                    X (Twitter)
+                                </a>
+                                <a id="shareLinkedIn" href="#" target="_blank" class="py-2 bg-white hover:bg-gray-100 border border-gray-200 text-gray-800 rounded-xl text-[11px] font-medium transition flex items-center justify-center">
+                                    LinkedIn
+                                </a>
+                            </div>
+
+                            <div class="grid grid-cols-3 gap-2">
+                                <a id="shareTikTok" href="https://www.tiktok.com" target="_blank" class="py-2 bg-white hover:bg-gray-100 border border-gray-200 text-gray-800 rounded-xl text-[11px] font-medium transition flex items-center justify-center">
+                                    TikTok
+                                </a>
+                                <a id="shareInstagram" href="https://www.instagram.com" target="_blank" class="py-2 bg-white hover:bg-gray-100 border border-gray-200 text-gray-800 rounded-xl text-[11px] font-medium transition flex items-center justify-center">
+                                    Instagram
+                                </a>
+                                <a id="shareFacebook" href="#" target="_blank" class="py-2 bg-white hover:bg-gray-100 border border-gray-200 text-gray-800 rounded-xl text-[11px] font-medium transition flex items-center justify-center">
+                                    Facebook
+                                </a>
+                            </div>
+
+                            <button onclick="copyShareLink()" class="w-full py-2 bg-white hover:bg-gray-100 border border-gray-200 text-gray-800 rounded-xl text-[11px] font-medium transition flex items-center justify-center">
+                                Copy Link to Clipboard
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- VIEW 2: SOCIAL FEED -->
+        <section id="view-social" class="hidden space-y-4">
+            <h2 class="text-lg font-bold text-gray-900 mb-2">Network Feed</h2>
+            <div class="bg-gray-50 border border-gray-200 p-4 rounded-xl space-y-3 shadow-sm">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-[#1e3a8a] text-white rounded-full flex items-center justify-center shadow-sm">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2v20m-4-15h8M7 16l-2-2m14 2l2-2M12 20l-5-5m5 5l5-5M5 12h2a5 5 0 0010 0h2"/></svg>
+                    </div>
+                    <div>
+                        <div class="font-bold text-sm text-gray-900">Matter 1B Protocol</div>
+                    </div>
+                </div>
+                <div class="text-sm text-gray-800 pl-1 font-medium">
+                    Standby for upgrades
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- BOTTOM NAVIGATION -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur border-t border-gray-200 px-6 py-3 z-50 shadow-sm">
+        <div class="max-w-lg mx-auto flex justify-around items-center">
+            <button onclick="switchView('dashboard')" id="nav-btn-dashboard" class="flex flex-col items-center space-y-1 text-[#1e3a8a] transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                <span class="text-[10px] font-medium">Dashboard</span>
+            </button>
+            <button onclick="switchView('social')" id="nav-btn-social" class="flex flex-col items-center space-y-1 text-gray-500 hover:text-gray-900 transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                <span class="text-[10px] font-medium">Connect</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ALERTS MODAL -->
+    <div id="alertsModal" class="fixed inset-0 bg-black/50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white border border-gray-200 w-full max-w-sm rounded-2xl p-5 space-y-4 shadow-xl">
+            <div class="flex justify-between items-center">
+                <h3 class="font-bold text-gray-900 text-sm">M1Bi Updates</h3>
+                <button onclick="closeModal('alertsModal')" class="text-gray-500 hover:text-gray-900 text-lg">&times;</button>
+            </div>
+            <div class="space-y-2 text-xs">
+                <div class="p-3 bg-gray-50 border border-gray-200 rounded-xl">
+                    <div class="font-semibold text-[#1e3a8a]">System Online</div>
+                    <div class="text-gray-600 mt-0.5">Welcome.</div>
+                </div>
+            </div>
+            <button onclick="closeModal('alertsModal')" class="w-full py-2 bg-gray-100 hover:bg-gray-200 text-xs font-semibold rounded-xl text-gray-900 transition">Acknowledge</button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT APP LOGIC -->
+    <script>
+        const REG_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwae0EXG74kK7a87bGz_DNal1FuwYF7a-_owdOh2h7YnFfQy5XpxBt1EcUczCp_F6tR2w/exec";
+        const REC_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby6WmdP7STFvqfF_AEPsK_OpSqPOCaRReTnJ_T8RlcmYeLWi-C514VD_g60hZZZCeQC/exec";
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const isRegistered = localStorage.getItem('m1b_registered');
+            const savedName = localStorage.getItem('m1b_name');
+
+            if (isRegistered === 'true' && savedName) {
+                applySecuredUI(savedName);
+            }
+
+            const shareUrl = encodeURIComponent(window.location.href);
+            const shareText = encodeURIComponent("Check out Matter 1B MMXXVI:");
+
+            document.getElementById('shareTwitter').href = `https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareText}`;
+            document.getElementById('shareLinkedIn').href = `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`;
+            document.getElementById('shareFacebook').href = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
+        });
+
+        function triggerNativeShare() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Matter 1B',
+                    text: 'Check out Matter 1B MMXXVI',
+                    url: window.location.href,
+                }).catch((error) => console.log('Sharing failed', error));
+            } else {
+                alert('Native sharing is not supported on this browser. Use the platform buttons or copy link instead.');
+            }
+        }
+
+        function copyShareLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('Link copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy link: ', err);
+            });
+        }
+
+        function switchView(viewName) {
+            document.getElementById('view-dashboard').classList.add('hidden');
+            document.getElementById('view-social').classList.add('hidden');
+
+            document.getElementById('nav-btn-dashboard').className = "flex flex-col items-center space-y-1 text-gray-500 hover:text-gray-900 transition";
+            document.getElementById('nav-btn-social').className = "flex flex-col items-center space-y-1 text-gray-500 hover:text-gray-900 transition";
+
+            document.getElementById('view-' + viewName).classList.remove('hidden');
+            document.getElementById('nav-btn-' + viewName).className = "flex flex-col items-center space-y-1 text-[#1e3a8a] transition";
+            window.scrollTo(0, 0);
+        }
+
+        function handleRegistration(event) {
+            event.preventDefault();
+
+            const honeypotVal = document.getElementById('hp_field').value;
+            if (honeypotVal) return;
+
+            const isBotChecked = document.getElementById('botCheck').checked;
+            if (!isBotChecked) {
+                alert('Please verify you are not a robot.');
+                return;
+            }
+
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.innerText = "Securing Badge...";
+            btn.classList.add('opacity-50', 'cursor-not-allowed');
+
+            const formData = new FormData(document.getElementById('marketingForm'));
+
+            fetch(REG_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formData
+            }).then(() => {
+                showSuccessState();
+            }).catch(() => {
+                showSuccessState();
+            });
+        }
+
+        function showSuccessState() {
+            const name = document.getElementById('regName').value || "Anchor";
+
+            localStorage.setItem('m1b_registered', 'true');
+            localStorage.setItem('m1b_name', name);
+
+            applySecuredUI(name);
+
+            const badgeCard = document.getElementById('founderBadgeCard');
+            badgeCard.classList.add('glisten-effect', 'border-blue-600', 'scale-[1.02]');
+            setTimeout(() => {
+                badgeCard.classList.remove('glisten-effect', 'scale-[1.02]');
+            }, 3000);
+        }
+
+        function applySecuredUI(name) {
+            document.getElementById('userBadgeHeader').innerText = name;
+            document.getElementById('badgeTitle').innerText = "ANCHOR SECURED";
+            document.getElementById('badgeSubtitle').innerText = "";
+
+            const intakeContainer = document.getElementById('intakeContainer');
+            intakeContainer.innerHTML = `
+                <div class="space-y-3 text-center py-6">
+                    <div class="inline-block px-3 py-1 bg-green-100 text-green-800 text-xs font-bold rounded-full">
+                        Verified & Logged
+                    </div>
+                    <h3 class="font-bold text-gray-900 text-sm">Anchor Secured</h3>
+                    <p class="text-xs text-gray-500">
+                        Registration successful! Anchor secured.
+                    </p>
+                </div>
+            `;
+        }
+
+        function handleRecruitmentSubmission(event) {
+            event.preventDefault();
+
+            const honeypotVal = document.getElementById('hp_field_recruit').value;
+            if (honeypotVal) return;
+
+            const isBotChecked = document.getElementById('botCheckRecruit').checked;
+            if (!isBotChecked) {
+                alert('Please verify you are not a robot.');
+                return;
+            }
+
+            const btn = document.getElementById('recSubmitBtn');
+            btn.disabled = true;
+            btn.innerText = "Transmitting Application...";
+            btn.classList.add('opacity-50', 'cursor-not-allowed');
+
+            const formData = new FormData(document.getElementById('matterRecruitmentForm'));
+
+            fetch(REC_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formData
+            }).then(() => {
+                showRecruitmentSuccessState();
+            }).catch(() => {
+                showRecruitmentSuccessState();
+            });
+        }
+
+        function showRecruitmentSuccessState() {
+            const recruitmentContainer = document.getElementById('recruitmentContainer');
+            recruitmentContainer.innerHTML = `
+                <div class="space-y-3 text-center py-6">
+                    <div class="inline-block px-3 py-1 bg-green-100 text-green-800 text-xs font-bold rounded-full">
+                        Application Received
+                    </div>
+                    <h3 class="font-bold text-gray-900 text-sm">Status: Under Review</h3>
+                    <p class="text-xs text-gray-600">
+                        Thank you for applying. We will review your links and reach out via email if it's a match.
+                    </p>
+                </div>
+            `;
+        }
+
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
