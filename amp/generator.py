@@ -7,34 +7,34 @@ def generate_content():
     client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
     
     prompt = """
-    You are the master content engine for 'Matter 1B Amp', an autonomous growth engine for Matter1B.com.
-    Matter 1B is an open-source super-app and DAO focused on wealth sovereignty, natural-law alignment, 
-    cognitive sovereignty, and eliminating financial intermediaries.
+    You are the lead conversion copywriter for Matter1B.com, driving automated traffic and ebook sales for the Matter 1B framework.
+    Matter 1B is a peer-to-peer economic architecture, open-source super-app, and DAO focused on wealth sovereignty, 
+    natural-law alignment, and eliminating financial intermediaries.
     
-    Generate a comprehensive, synchronized daily multi-platform content bundle focusing on a 
-    'gridlock to breakthrough' narrative.
+    Generate a synchronized daily multi-platform content bundle. 
+    CRITICAL INSTRUCTION FOR THE SCRIPT: The spoken video script must be pure spoken-word dialogue ONLY. Never include stage directions, speaker labels, or acronyms like 'CTA'. It must flow naturally, start with an intense pattern-interrupt hook about financial gridlock or wealth freedom, and naturally conclude by telling the viewer to grab the ebook at Matter1B.com.
     
     Return the output strictly in valid JSON format with the following top-level keys:
     - "date": Current generation timestamp string.
-    - "youtube_tiktok_short": {{
-        "title": "Catchy short title under 60 characters with hashtags",
-        "script": "Spoken video script under 70 words with a fast-paced hook and CTA to https://matter1b.com",
-        "visual_cues": "Brief instructions for background visuals or text overlays"
-      }}
-    - "substack_post": {{
-        "headline": "Compelling long-form article title",
+    - "youtube_tiktok_short": {
+        "title": "High-converting short title under 60 characters with hashtags",
+        "script": "Natural, spoken 30-second script focusing on ebook availability at https://matter1b.com",
+        "visual_cues": "Brief background visual notes"
+      },
+    - "substack_post": {
+        "headline": "Compelling long-form article title highlighting wealth sovereignty",
         "subtitle": "Engaging subtitle preview",
-        "video_section": "Note on how the daily video ties into this essay",
-        "essay_body": "Detailed 300+ word markdown essay expanding on natural-law economic design, wealth sovereignty, or ecological stewardship, concluding with a link to https://matter1b.com"
-      }}
-    - "professional_social": {{
-        "linkedin": "Thought-leadership post breaking down the architectural or systemic perspective for professionals, with link to https://matter1b.com",
-        "x_twitter": "Punchy, high-engagement thread starter or statement under 280 characters with a link to https://matter1b.com"
-      }}
-    - "decentralized_social": {{
-        "bluesky": "Community-focused update highlighting open-source sovereignty and gridlock-to-breakthrough, with link to https://matter1b.com",
-        "threads": "Conversational, engaging take on financial intermediaries and natural law, with link to https://matter1b.com"
-      }}
+        "video_section": "Note on how the video ties into this essay",
+        "essay_body": "Detailed 300+ word markdown essay expanding on natural-law economics, concluding with an explicit call to read the Matter 1B series at https://matter1b.com"
+      },
+    - "professional_social": {
+        "linkedin": "Thought-leadership post on system architecture and economic sovereignty with link to https://matter1b.com",
+        "x_twitter": "Punchy thread starter exposing financial middlemen with link to https://matter1b.com"
+      },
+    - "decentralized_social": {
+        "bluesky": "Community update on decentralized sovereign apps with link to https://matter1b.com",
+        "threads": "Conversational take on natural law and financial freedom with link to https://matter1b.com"
+      }
     """
 
     response = client.chat.completions.create(
@@ -46,7 +46,6 @@ def generate_content():
     content = json.loads(response.choices[0].message.content)
     content["date"] = datetime.now().strftime("%Y-%m-%d %H:%M")
     
-    # Ensure drafts directory exists and save the master bundle
     os.makedirs("amp/drafts", exist_ok=True)
     filename = f"amp/drafts/bundle_{datetime.now().strftime('%Y-%m-%d-%H%M')}.json"
     
