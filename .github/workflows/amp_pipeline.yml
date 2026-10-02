@@ -22,7 +22,7 @@ jobs:
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install --no-cache-dir groq
+          pip install --no-cache-dir groq moviepy
 
       - name: Run Content Generator
         env:
@@ -30,10 +30,14 @@ jobs:
         run: |
           python amp/generator.py
 
-      - name: Commit and Push Draft
+      - name: Run Video Renderer
+        run: |
+          python amp/renderer.py
+
+      - name: Commit and Push Assets
         run: |
           git config --global user.name "Matter 1B Amp Bot"
           git config --global user.email "amp@matter1b.com"
-          git add amp/drafts/
-          git commit -m "Auto-generate new Matter 1B content draft" || echo "No changes to commit"
+          git add amp/drafts/ amp/videos/
+          git commit -m "Auto-generate new Matter 1B content bundle and rendered video" || echo "No changes to commit"
           git push
