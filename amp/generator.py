@@ -1,5 +1,6 @@
 import os
 import json
+from datetime import datetime
 from groq import Groq
 
 def generate_content():
@@ -11,7 +12,7 @@ def generate_content():
     and eliminating financial intermediaries.
     
     Generate a high-converting, punchy 30-second YouTube Short script. 
-    Focus on a 'gridlock to breakthrough' narrative.
+    Focus on a 'gridlock to breakthrough' narrative emphasizing ecological stewardship and cognitive sovereignty.
     
     Return the output strictly in JSON format with the following keys:
     - "title": A catchy YouTube title under 60 characters with hashtags.
@@ -27,13 +28,14 @@ def generate_content():
     
     content = json.loads(response.choices[0].message.content)
     
-    print("--- GENERATED MATTER 1B AMP CONTENT ---")
-    print(f"Title: {content['title']}")
-    print(f"Script:\n{content['script']}")
-    print(f"Description:\n{content['description']}")
+    # Ensure drafts directory exists and save the file with a timestamp
+    os.makedirs("amp/drafts", exist_ok=True)
+    filename = f"amp/drafts/draft_{datetime.now().strftime('%Y-%m-%d-%H%M')}.json"
     
-    with open("output_content.json", "w") as f:
+    with open(filename, "w") as f:
         json.dump(content, f, indent=4)
+        
+    print(f"Successfully generated review draft: {filename}")
 
 if __name__ == "__main__":
     generate_content()
