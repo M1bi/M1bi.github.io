@@ -16,11 +16,11 @@ def generate_content():
     Return the output strictly in JSON format with the following keys:
     - "title": A catchy YouTube title under 60 characters with hashtags.
     - "script": The spoken text for the video (under 70 words, fast-paced hook).
-    - "description": The YouTube description including a clear call-to-action driving traffic to [https://matter1b.com](https://matter1b.com).
+    - "description": The YouTube description including a clear call-to-action driving traffic to https://matter1b.com.
     """
 
     response = client.chat.completions.create(
-        model="llama-3.1-8b-instant",
+        model="openai/gpt-oss-20b",
         messages=[{"role": "user", "content": prompt}],
         response_format={"type": "json_object"}
     )
