@@ -8,6 +8,8 @@ on:
 jobs:
   run-amp:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -27,3 +29,11 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
           python amp/generator.py
+
+      - name: Commit and Push Draft
+        run: |
+          git config --global user.name "Matter 1B Amp Bot"
+          git config --global user.email "amp@matter1b.com"
+          git add amp/drafts/
+          git commit -m "Auto-generate new Matter 1B content draft" || echo "No changes to commit"
+          git push
