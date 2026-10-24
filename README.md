@@ -1,33 +1,29 @@
 # Matter 1B
 
-Matter 1B is an economic framework and web application engineered to bypass legacy system extraction, align technology with natural law, and restore wealth sovereignty to individuals through decentralized, positive-sum architecture.
+Matter 1B is an early-stage, nature-inspired plan for a people-owned economy, built alongside today's. It is designed to pay perpetual dividends to the people who build and use it, provide decentralized AI protection, and help people find what matters when work shifts. This is a design goal, not a promise: the app is preliminary and the network is still being built.
 
-**Core Vision**
-> "The resources, money, and tools that all of humanity needs to thrive already exist on this planet. They haven't disappeared—they’ve been locked behind administrative gatekeeping."
-
----
-
-**App Architecture & Sections**
-
-* **Anchor:** The foundational mobile-accessible entry point designed to anchor users, deliver updates, and connect participants. *(Addable directly to your device home screen via instructions inside the framework books).*
-* **Build:** A recruitment portal seeking founders, protocol architects, senior blockchain developers, legal counsel, and strategic systems professionals. Submissions require professional credentials (GitHub, LinkedIn, portfolio, or project proposals).
-* **Fund:** Support pathways dedicated to core engineering, open-source protocol expansion, decentralized treasury development, and builder deployment.
-* **Share:** Relentless community distribution tools supporting native device sharing across GitHub, Discord, X, LinkedIn, and direct clipboard links.
+The books are at [Matter1B.com](https://matter1b.com). Foundations and the two Builder Guides are free.
 
 ---
 
-**The Framework & Literature**
+**App sections**
 
-Structured as a progressive series designed to dismantle extractive gridlock and build sovereign alternatives:
-1. **Foundations:** The core philosophy of wealth sovereignty and the elimination of administrative middlemen.
-2. **The Protocol:** Preliminary blueprints for direct, peer-to-peer finance.
-3. **M1Bi DAO:** Mechanics governing decentralized community wealth and perpetual user dividends.
-4. **Living Library:** Alignment of Web3 architecture with individual sovereignty and natural law.
-
-*Note: Book prices are recommended rather than required, with revenue split to fund ongoing development and social foundations through the Matter 1B DAO.*
+* **Anchor:** Register for updates and an Anchor Badge. The app can be added to your phone's home screen.
+* **Build:** For people who want to help build Matter 1B: founders, protocol and security architects, blockchain developers, legal counsel, and other professionals. Please include links to your work (GitHub, LinkedIn, portfolio, or a project proposal).
+* **Fund:** Support for engineering and development. Funding is support, not an investment.
+* **Share:** Share Matter 1B on your favorite apps or copy the link.
 
 ---
 
-**Repository Purpose**
+**The books**
 
-This repository serves as a read-only, professional showcase of the Matter 1B web application and core framework infrastructure. It functions as a technical and strategic recruitment portfolio for reviewing engineers, architects, and strategic partners.
+1. **Foundations:** The core ideas behind Matter 1B.
+2. **The Protocol:** Early blueprints for direct, person-to-person payments.
+3. **M1Bi DAO:** How a community-owned network could be run, and how perpetual dividends are designed to work.
+4. **Living Library:** How the technology could fit with people and nature.
+
+---
+
+**About this repository**
+
+This repository holds the code for the Matter 1B app page at m1bi.com, shared openly for builders and partners to review.

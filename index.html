@@ -104,16 +104,13 @@
                                 <input type="email" name="Email" id="regEmail" required placeholder="name@domain.com" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
                             </div>
                             <div>
-                                <label class="block text-xs font-medium text-gray-700 mb-1">Phone Number</label>
-                                <input type="tel" name="Phone Number" id="regPhone" required placeholder="(555) 000-0000" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <label class="block text-xs font-medium text-gray-700 mb-1">Phone Number (optional)</label>
+                                <input type="tel" name="Phone Number" id="regPhone" placeholder="(555) 000-0000" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
                             </div>
 
-                            <div class="p-3 bg-white border border-gray-200 rounded-xl flex items-center justify-between">
-                                <div class="flex items-center space-x-2">
-                                    <input type="checkbox" id="botCheck" required class="w-4 h-4 text-[#1e3a8a] border-gray-300 rounded focus:ring-blue-600">
-                                    <label for="botCheck" class="text-xs text-gray-700 font-medium select-none">I am not a robot</label>
-                                </div>
-                                <span class="text-[10px] bg-gray-100 text-gray-500 px-2 py-0.5 rounded border border-gray-200">Security Check</span>
+                            <div class="p-3 bg-white border border-gray-200 rounded-xl flex items-start space-x-2">
+                                <input type="checkbox" id="botCheck" required class="mt-0.5 w-4 h-4 text-[#1e3a8a] border-gray-300 rounded focus:ring-blue-600">
+                                <label for="botCheck" class="text-xs text-gray-700 font-medium select-none">I agree to receive emails about Matter 1B. I can unsubscribe any time. See the <a href="privacy.html" class="underline">Privacy Policy</a>.</label>
                             </div>
 
                             <button type="submit" id="submitBtn" class="w-full py-3 bg-gray-900 hover:bg-black font-semibold rounded-xl text-sm text-white transition shadow-md">
@@ -161,20 +158,17 @@ System Architects, Finance Professionals, Marketing Professionals. Please submit
                                 <input type="email" name="Email" id="recEmail" required placeholder="name@domain.com" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
                             </div>
                             <div>
-                                <label class="block text-xs font-medium text-gray-700 mb-1">Phone</label>
-                                <input type="tel" name="Phone" id="recPhone" required placeholder="(555) 000-0000" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <label class="block text-xs font-medium text-gray-700 mb-1">Phone (optional)</label>
+                                <input type="tel" name="Phone" id="recPhone" placeholder="(555) 000-0000" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
                             </div>
                             <div>
                                 <label class="block text-xs font-medium text-gray-700 mb-1">Links</label>
                                 <input type="url" name="Links" id="recLinks" required placeholder="https://github.com/username/project or portfolio link" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
                             </div>
 
-                            <div class="p-3 bg-white border border-gray-200 rounded-xl flex items-center justify-between">
-                                <div class="flex items-center space-x-2">
-                                    <input type="checkbox" id="botCheckRecruit" required class="w-4 h-4 text-[#1e3a8a] border-gray-300 rounded focus:ring-blue-600">
-                                    <label for="botCheckRecruit" class="text-xs text-gray-700 font-medium select-none">I am not a robot</label>
-                                </div>
-                                <span class="text-[10px] bg-gray-100 text-gray-500 px-2 py-0.5 rounded border border-gray-200">Security Check</span>
+                            <div class="p-3 bg-white border border-gray-200 rounded-xl flex items-start space-x-2">
+                                <input type="checkbox" id="botCheckRecruit" required class="mt-0.5 w-4 h-4 text-[#1e3a8a] border-gray-300 rounded focus:ring-blue-600">
+                                <label for="botCheckRecruit" class="text-xs text-gray-700 font-medium select-none">I agree that Matter 1B can store these details to review my application and contact me about it. See the <a href="privacy.html" class="underline">Privacy Policy</a>.</label>
                             </div>
 
                             <button type="submit" id="recSubmitBtn" class="w-full py-3 bg-gray-900 hover:bg-black font-semibold rounded-xl text-sm text-white transition shadow-md">
@@ -410,7 +404,7 @@ System Architects, Finance Professionals, Marketing Professionals. Please submit
 
             const isBotChecked = document.getElementById('botCheck').checked;
             if (!isBotChecked) {
-                alert('Please verify you are not a robot.');
+                alert('Please tick the box to continue.');
                 return;
             }
 
@@ -428,7 +422,10 @@ System Architects, Finance Professionals, Marketing Professionals. Please submit
             }).then(() => {
                 showSuccessState();
             }).catch(() => {
-                showSuccessState();
+                alert('Sorry, your registration could not be sent. Please check your connection and try again.');
+                btn.disabled = false;
+                btn.innerText = "Register & Secure Anchor Badge";
+                btn.classList.remove('opacity-50', 'cursor-not-allowed');
             });
         }
 
@@ -440,7 +437,7 @@ System Architects, Finance Professionals, Marketing Professionals. Please submit
 
             const isBotChecked = document.getElementById('botCheckRecruit').checked;
             if (!isBotChecked) {
-                alert('Please verify you are not a robot.');
+                alert('Please tick the box to continue.');
                 return;
             }
 
@@ -456,13 +453,13 @@ System Architects, Finance Professionals, Marketing Professionals. Please submit
                 mode: 'no-cors',
                 body: formData
             }).then(() => {
-                alert('Application submitted successfully!');
+                alert('Thank you, your application has been sent.');
                 btn.disabled = false;
                 btn.innerText = "Submit Application";
                 btn.classList.remove('opacity-50', 'cursor-not-allowed');
                 document.getElementById('matterRecruitmentForm').reset();
             }).catch(() => {
-                alert('Application submitted successfully!');
+                alert('Sorry, your application could not be sent. Please check your connection and try again.');
                 btn.disabled = false;
                 btn.innerText = "Submit Application";
                 btn.classList.remove('opacity-50', 'cursor-not-allowed');
@@ -487,18 +484,18 @@ System Architects, Finance Professionals, Marketing Professionals. Please submit
 
         function applySecuredUI(name) {
             document.getElementById('userBadgeHeader').innerText = name;
-            document.getElementById('badgeTitle').innerText = "ANCHOR SECURED";
+            document.getElementById('badgeTitle').innerText = "ANCHOR REGISTERED";
             document.getElementById('badgeSubtitle').innerText = "";
 
             const intakeContainer = document.getElementById('intakeContainer');
             intakeContainer.innerHTML = `
                 <div class="space-y-3 text-center py-6">
                     <div class="inline-block px-3 py-1 bg-green-100 text-green-800 text-xs font-bold rounded-full">
-                        Verified & Logged
+                        Registered
                     </div>
-                    <h3 class="font-bold text-gray-900 text-sm">Anchor Secured</h3>
+                    <h3 class="font-bold text-gray-900 text-sm">You're on the list</h3>
                     <p class="text-xs text-gray-500">
-                        Registration successful! Access and protocol options are unlocked.
+                        Thanks for registering. We'll email you Matter 1B updates.
                     </p>
                 </div>
             `;
